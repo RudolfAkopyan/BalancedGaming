@@ -1,0 +1,195 @@
+﻿<Window x:Class="Balanced_Gaming.Views.AddGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add New Game" 
+        Height="500" 
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#ECF0F1">
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- 0: Header -->
+            <RowDefinition Height="Auto"/>
+            <!-- 1: Subtitle -->
+            <RowDefinition Height="Auto"/>
+            <!-- 2: Game Name Label -->
+            <RowDefinition Height="Auto"/>
+            <!-- 3: Game Name TextBox -->
+            <RowDefinition Height="Auto"/>
+            <!-- 4: Genre Label -->
+            <RowDefinition Height="Auto"/>
+            <!-- 5: Genre ComboBox -->
+            <RowDefinition Height="Auto"/>
+            <!-- 6: Playtime Label -->
+            <RowDefinition Height="Auto"/>
+            <!-- 7: Playtime ComboBox -->
+            <RowDefinition Height="*"/>
+            <!-- 8: Spacer -->
+            <RowDefinition Height="Auto"/>
+            <!-- 9: Buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" 
+                   Text="Add New Game" 
+                   FontSize="24" 
+                   FontWeight="Bold"
+                   Foreground="#2C3E50"
+                   Margin="0,0,0,5"/>
+        <TextBlock Grid.Row="1" 
+                   Text="Fill in the details of your game" 
+                   FontSize="13" 
+                   Foreground="#7F8C8D"
+                   Margin="0,0,0,25"/>
+
+        <!-- Game Name -->
+        <TextBlock Text="Game Name *" 
+                   Grid.Row="2" 
+                   FontSize="14" 
+                   FontWeight="SemiBold" 
+                   Foreground="#2C3E50"
+                   Margin="0,0,0,8"/>
+        <TextBox x:Name="gameNameTextBox" 
+                 Grid.Row="3" 
+                 Height="40" 
+                 FontSize="14"
+                 Padding="12,10"
+                 BorderBrush="#BDC3C7"
+                 BorderThickness="1"
+                 Margin="0,0,0,15"/>
+
+        <!-- Genre -->
+        <TextBlock Text="Genre *" 
+                   Grid.Row="4" 
+                   FontSize="14" 
+                   FontWeight="SemiBold" 
+                   Foreground="#2C3E50"
+                   Margin="0,0,0,8"/>
+        <ComboBox x:Name="genreComboBox" 
+          Grid.Row="5" 
+          Height="40" 
+          FontSize="14" 
+          Padding="10"
+          BorderBrush="#BDC3C7"
+          Margin="0,0,0,15">
+            <ComboBoxItem Content="FPS" IsSelected="True"/>
+            <ComboBoxItem Content="MOBA"/>
+            <ComboBoxItem Content="Battle Royale"/>
+            <ComboBoxItem Content="RPG"/>
+            <ComboBoxItem Content="MMORPG"/>
+            <ComboBoxItem Content="Strategy"/>
+            <ComboBoxItem Content="Sandbox"/>
+            <ComboBoxItem Content="Simulation"/>
+            <ComboBoxItem Content="Sports"/>
+            <ComboBoxItem Content="Racing"/>
+            <ComboBoxItem Content="Adventure"/>
+            <ComboBoxItem Content="Puzzle"/>
+            <ComboBoxItem Content="Fighting"/>
+            <ComboBoxItem Content="Platformer"/>
+            <ComboBoxItem Content="Horror"/>
+            <ComboBoxItem Content="Survival"/>
+            <ComboBoxItem Content="Casual"/>
+        </ComboBox>
+
+        <!-- Expected Playtime -->
+        <TextBlock Text="Expected Playtime (Optional)" 
+           Grid.Row="6" 
+           FontSize="14" 
+           FontWeight="SemiBold" 
+           Foreground="#2C3E50"
+           Margin="0,0,0,8"/>
+        <ComboBox x:Name="expectedPlaytimeComboBox" 
+          Grid.Row="7" 
+          Height="40" 
+          FontSize="14"
+          Padding="10"
+          BorderBrush="#BDC3C7"
+          Margin="0,0,0,15">
+            <ComboBoxItem Content="15 minutes"/>
+            <ComboBoxItem Content="30 minutes"/>
+            <ComboBoxItem Content="45 minutes"/>
+            <ComboBoxItem Content="1 hour" IsSelected="True"/>
+            <ComboBoxItem Content="1.5 hours"/>
+            <ComboBoxItem Content="2 hours"/>
+            <ComboBoxItem Content="3 hours"/>
+            <ComboBoxItem Content="4+ hours"/>
+        </ComboBox>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="9" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,25,0,0">
+            <Button x:Name="cancelButton" 
+                    Content="Cancel" 
+                    Click="CancelButton_Click" 
+                    Width="110"
+                    Height="40"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Margin="0,0,10,0"
+                    Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#95A5A6"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="5"
+                                            Padding="15,10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#7F8C8D"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button x:Name="saveButton" 
+                    Content="Save Game" 
+                    Click="SaveButton_Click" 
+                    Width="130"
+                    Height="40"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="#27AE60"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="5"
+                                            Padding="15,10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#229954"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,578 @@
+﻿<Window x:Class="Balanced_Gaming.Views.MoodAssessmentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Mood Assessment" 
+        Height="680" 
+        Width="650"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#ECF0F1">
+   
+    <Window.Resources>
+        <Style x:Key="MoodRadioButton" TargetType="RadioButton">
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="1.15" ScaleY="1.15"/>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect Color="#2980B9" BlurRadius="25" ShadowDepth="0" Opacity="0.9"/>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+    
+        <!-- Header -->
+        <TextBlock Grid.Row="0" 
+                   x:Name="titleText"
+                   Text="How are you feeling?" 
+                   FontSize="26" 
+                   FontWeight="Bold"
+                   Foreground="#2C3E50"
+                   Margin="0,0,0,8"/>
+        <TextBlock Grid.Row="1" 
+                   x:Name="subtitleText"
+                   Text="Please answer these questions before starting your session" 
+                   FontSize="14" 
+                   Foreground="#7F8C8D"
+                   Margin="0,0,0,25"/>
+
+        <!-- Questions ScrollViewer -->
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+
+                <!-- Question 1: Overall Mood - GOOD (GREEN) to BAD (RED) -->
+<Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+    <StackPanel>
+        <TextBlock Text="1. How are you feeling right now?" 
+                   FontSize="15" 
+                   FontWeight="SemiBold" 
+                   Foreground="#2C3E50"
+                   Margin="0,0,0,15"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- 5 - Very Good (GREEN) -->
+                            <RadioButton x:Name="mood5" Grid.Column="0" GroupName="mood" HorizontalAlignment="Center" Style="{StaticResource MoodRadioButton}">
+                <StackPanel HorizontalAlignment="Center">
+                    <Border x:Name="mood5Border" Background="#27AE60" CornerRadius="50" Width="50" Height="50" Padding="5" BorderThickness="3" BorderBrush="Transparent">
+                        <TextBlock Text="😄" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Very Good" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center" FontWeight="SemiBold"/>
+                </StackPanel>
+            </RadioButton>
+            
+            <!-- 4 - Good -->
+                            <RadioButton x:Name="mood4" Grid.Column="1" GroupName="mood" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                <StackPanel HorizontalAlignment="Center">
+                    <Border Background="#2ECC71" CornerRadius="50" Width="50" Height="50" Padding="5" BorderThickness="3" BorderBrush="Transparent">
+                        <TextBlock Text="🙂" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Good" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" FontWeight="SemiBold"/>
+                </StackPanel>
+            </RadioButton>
+            
+            <!-- 3 - Neutral (YELLOW) -->
+                            <RadioButton x:Name="mood3" Grid.Column="2" GroupName="mood" HorizontalAlignment="Center" IsChecked="True"  Style="{StaticResource MoodRadioButton}">
+                <StackPanel HorizontalAlignment="Center">
+                    <Border Background="#F39C12" CornerRadius="50" Width="50" Height="50" Padding="5" BorderThickness="3" BorderBrush="Transparent">
+                        <TextBlock Text="😐" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Neutral" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" FontWeight="SemiBold"/>
+                </StackPanel>
+            </RadioButton>
+            
+            <!-- 2 - Bad -->
+                            <RadioButton x:Name="mood2" Grid.Column="3" GroupName="mood" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                <StackPanel HorizontalAlignment="Center">
+                    <Border Background="#E67E22" CornerRadius="50" Width="50" Height="50" Padding="5" BorderThickness="3" BorderBrush="Transparent">
+                        <TextBlock Text="😟" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Bad" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" FontWeight="SemiBold"/>
+                </StackPanel>
+            </RadioButton>
+            
+            <!-- 1 - Very Bad (RED) -->
+                            <RadioButton x:Name="mood1" Grid.Column="4" GroupName="mood" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                <StackPanel HorizontalAlignment="Center">
+                    <Border Background="#E74C3C" CornerRadius="50" Width="50" Height="50" Padding="5" BorderThickness="3" BorderBrush="Transparent">
+                        <TextBlock Text="😢" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <TextBlock Text="Very Bad" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center" FontWeight="SemiBold"/>
+                </StackPanel>
+            </RadioButton>
+        </Grid>
+    </StackPanel>
+</Border>
+                <!-- Question 2: Stress Level -->
+                <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="2. How stressed do you feel?" 
+                                   FontSize="15" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton x:Name="stress1" Grid.Column="0" GroupName="stress" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#27AE60" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😌" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Relaxed" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="stress2" Grid.Column="1" GroupName="stress" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#2ECC71" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="🙂" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Slight" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="stress3" Grid.Column="2" GroupName="stress" HorizontalAlignment="Center" IsChecked="True"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#F39C12" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😐" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Moderate" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="stress4" Grid.Column="3" GroupName="stress" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E67E22" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😰" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Stressed" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="stress5" Grid.Column="4" GroupName="stress" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E74C3C" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😫" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Very" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                    <TextBlock Text="Stressed" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Question 3: Energy Level -->
+                <Border Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="3. How energetic are you?" 
+                                   FontSize="15" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton x:Name="energy1" Grid.Column="0" GroupName="energy" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#27AE60" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="⚡" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Very" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                    <TextBlock Text="Energetic" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="energy2" Grid.Column="1" GroupName="energy" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#2ECC71" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="🙂" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Energetic" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="energy3" Grid.Column="2" GroupName="energy" HorizontalAlignment="Center" IsChecked="True"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#F39C12" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😐" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Normal" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="energy4" Grid.Column="3" GroupName="energy" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E67E22" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😪" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Tired" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="energy5" Grid.Column="4" GroupName="energy" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E74C3C" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😴" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Exhausted" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0" TextWrapping="Wrap" TextAlignment="Center"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Question 4: Motivation (Pre-game) -->
+                <Border x:Name="motivationPanel" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="4. Why are you gaming?" 
+                                   FontSize="15" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,12"/>
+                        <ComboBox x:Name="motivationComboBox" 
+                                  Height="42" 
+                                  FontSize="14"
+                                  Padding="12"
+                                  SelectionChanged="MotivationComboBox_SelectionChanged">
+                            <ComboBoxItem Content="Relaxation" IsSelected="True"/>
+                            <ComboBoxItem Content="Fun and Entertainment"/>
+                            <ComboBoxItem Content="Social Connection"/>
+                            <ComboBoxItem Content="Escape/Distraction"/>
+                            <ComboBoxItem Content="Boredom"/>
+                            <ComboBoxItem Content="Challenge/Achievement"/>
+                            <ComboBoxItem Content="Other (specify below)"/>
+                        </ComboBox>
+
+                        <!-- Other motivation text box -->
+                        <TextBox x:Name="otherMotivationTextBox"
+                                 Height="42"
+                                 FontSize="14"
+                                 Padding="12"
+                                 Margin="0,10,0,0"
+                                 Visibility="Collapsed"
+                                 MaxLength="100"/>
+                    </StackPanel>
+                </Border>
+
+                <!-- Question 4: Satisfaction (Post-game) -->
+                <Border x:Name="satisfactionPanel" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="4. How satisfied are you with this session?" 
+                                   FontSize="15" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton x:Name="satisfaction1" Grid.Column="0" GroupName="satisfaction" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#27AE60" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😄" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Very Satisfied" FontSize="10" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="satisfaction2" Grid.Column="1" GroupName="satisfaction" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#2ECC71" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="🙂" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Satisfied" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="satisfaction3" Grid.Column="2" GroupName="satisfaction" HorizontalAlignment="Center" IsChecked="True"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#F39C12" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😐" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Neutral" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="satisfaction4" Grid.Column="3" GroupName="satisfaction" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E67E22" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😕" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Unsatisfied" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="satisfaction5" Grid.Column="4" GroupName="satisfaction" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E74C3C" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😞" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Regret" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Question 5: Focus (Pre-game) -->
+                <Border x:Name="focusPanel" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15">
+                    <StackPanel>
+                        <TextBlock Text="5. How focused do you feel?" 
+                                   FontSize="15" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton x:Name="focus1" Grid.Column="0" GroupName="focus" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#27AE60" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="🎯" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Very Focused" FontSize="10" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="focus2" Grid.Column="1" GroupName="focus" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#2ECC71" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="🙂" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Focused" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="focus3" Grid.Column="2" GroupName="focus" HorizontalAlignment="Center" IsChecked="True"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#F39C12" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😐" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Normal" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="focus4" Grid.Column="3" GroupName="focus" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E67E22" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😕" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Distracted" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="focus5" Grid.Column="4" GroupName="focus" HorizontalAlignment="Center"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E74C3C" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😵" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Unfocused" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+                            
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Question 5: Impact (Post-game) -->
+                <Border x:Name="impactPanel" Background="White" CornerRadius="8" Padding="20" Margin="0,0,0,15" Visibility="Collapsed">
+                    <StackPanel>
+                        <TextBlock Text="5. Did gaming help your wellbeing?" 
+                                   FontSize="15" 
+                                   FontWeight="SemiBold" 
+                                   Foreground="#2C3E50"
+                                   Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <RadioButton x:Name="impact1" Grid.Column="0" GroupName="impact" HorizontalAlignment="Center" Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#27AE60" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="✨" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Greatly" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                    <TextBlock Text="helped" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <!-- impact2 - Helped (LIGHT GREEN) -->
+                            <RadioButton x:Name="impact2" Grid.Column="1" GroupName="impact" HorizontalAlignment="Center" Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#2ECC71" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="👍" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Helped" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+
+                            <RadioButton x:Name="impact3" Grid.Column="2" GroupName="impact" HorizontalAlignment="Center" IsChecked="True"  Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#F39C12" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😐" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Neutral" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <!-- impact4 - No help (ORANGE) -->
+                            <RadioButton x:Name="impact4" Grid.Column="3" GroupName="impact" HorizontalAlignment="Center" Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E67E22" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="😕" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="No help" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+
+                            <RadioButton x:Name="impact5" Grid.Column="4" GroupName="impact" HorizontalAlignment="Center" Style="{StaticResource MoodRadioButton}">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="#E74C3C" CornerRadius="50" Width="50" Height="50" Padding="5">
+                                        <TextBlock Text="👎" FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <TextBlock Text="Made" FontSize="11" HorizontalAlignment="Center" Margin="0,8,0,0"/>
+                                    <TextBlock Text="worse" FontSize="11" HorizontalAlignment="Center" Margin="0,0,0,0"/>
+                                </StackPanel>
+                            </RadioButton>
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="3" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button x:Name="skipButton" 
+                    Content="Skip" 
+                    Click="SkipButton_Click" 
+                    Width="100"
+                    Height="42"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Margin="0,0,12,0"
+                    Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#95A5A6"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="6"
+                                            Padding="15,10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#7F8C8D"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button x:Name="submitButton" 
+                    Content="Continue" 
+                    Click="SubmitButton_Click" 
+                    Width="130"
+                    Height="42"
+                    FontSize="14"
+                    FontWeight="SemiBold"
+                    Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#27AE60"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="6"
+                                            Padding="15,10">
+                                        <ContentPresenter HorizontalAlignment="Center"
+                                                          VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#229954"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
