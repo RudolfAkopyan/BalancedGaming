@@ -22,11 +22,40 @@ namespace Balanced_Gaming.Views
     {
         private NotifyIcon notifyIcon;
         private SteamService _steamService;
+        private AppSettings _settings;
         public MainWindow()
         {
             InitializeComponent();
             _steamService = new SteamService();
-            _steamService.SetCredentials("3471B871533DC2534115608029924EC3", "76561198326739787");
+            _settings = AppSettings.Load();
+
+            if (_settings.IsConfigured)
+                _steamService.SetCredentials(_settings.SteamApiKey, _settings.SteamId);
+        }
+        private void SaveSteamSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var key = steamApiKeyBox.Password.Trim();
+            var id = steamIdBox.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(key) || string.IsNullOrWhiteSpace(id))
+            {
+                steamSettingsStatus.Text = "Both fields are required";
+                return;
+            }
+
+            _settings.SteamApiKey = key;
+            _settings.SteamId = id;
+
+            try
+            {
+                _settings.Save();
+                _steamService.SetCredentials(key, id);
+                steamSettingsStatus.Text = "Saved";
+            }
+            catch (Exception ex)
+            {
+                steamSettingsStatus.Text = "Save failed: " + ex.Message;
+            }
         }
 
         private void OpenSessionTracker_Click(object sender, RoutedEventArgs e)
@@ -558,7 +587,7 @@ namespace Balanced_Gaming.Views
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading sessions: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+             
             }
         }
    
@@ -612,7 +641,7 @@ namespace Balanced_Gaming.Views
                     db.SaveChanges();
                 }    
             
-                MessageBox.Show($"Imported {imported} new games into your library!", "Import Complete", MessageBoxButton.OK, MessageBoxImage.Information);
+               
             }
             catch (Exception ex)
             {

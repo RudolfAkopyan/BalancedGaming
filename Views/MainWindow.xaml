@@ -7,9 +7,9 @@
         Width="900"
         WindowStartupLocation="CenterScreen"
         Background="#0D1117"
-        Loaded="Window_Loaded">a
+        Loaded="Window_Loaded">
 
-    <Grid>
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
@@ -411,27 +411,52 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <TextBlock Grid.Row="0" Text="🎮 Your Steam Library"
                                FontSize="28" FontWeight="Bold"
                                Foreground="#E6EDF3" Margin="0,0,0,20"/>
+                    <Border Grid.Row="1" Background="#161B22" CornerRadius="8"
+                            Padding="15" Margin="0,0,0,20"
+                            BorderBrush="#30363D" BorderThickness="1">
+                        <StackPanel>
+                            <TextBlock Text="Steam credentials" FontSize="14" FontWeight="Bold"
+                                       Foreground="#E6EDF3" Margin="0,0,0,10"/>
 
-                    <Button Grid.Row="1" x:Name="LoadGamesButton"
+                            <TextBlock Text="API Key" Foreground="#6B7A8D" FontSize="12"/>
+                            <PasswordBox x:Name="steamApiKeyBox" Height="28" Margin="0,2,0,10"
+                                         Background="#0D1117" Foreground="#E6EDF3" BorderBrush="#30363D"/>
+
+                            <TextBlock Text="Steam ID (64-bit)" Foreground="#6B7A8D" FontSize="12"/>
+                            <TextBox x:Name="steamIdBox" Height="28" Margin="0,2,0,10"
+                                     Background="#0D1117" Foreground="#E6EDF3" BorderBrush="#30363D"/>
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Content="Save" Width="100" Height="30"
+                                        Click="SaveSteamSettings_Click"
+                                        Background="#3498DB" Foreground="White" Cursor="Hand"/>
+                                <TextBlock x:Name="steamSettingsStatus" Margin="15,0,0,0"
+                                           VerticalAlignment="Center" Foreground="#6B7A8D" FontSize="12"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    
+                    <Button Grid.Row="2" x:Name="LoadGamesButton"
                             Content="Load My Steam Games"
                             Width="200" Height="40" HorizontalAlignment="Left"
                             Click="LoadGamesButton_Click"
                             Background="#4CAF50" Foreground="White"
                             FontSize="14" Cursor="Hand" Margin="0,0,0,20"/>
 
-                    <Button Grid.Row="1" Content="Import to My Games"
+                    <Button Grid.Row="2" Content="Import to My Games"
                             Width="180" Height="40" HorizontalAlignment="Left"
                             Margin="220,0,0,20" Click="ImportSteamGames_Click"
                             Background="#3498DB" Foreground="White"
                             FontSize="14" Cursor="Hand"/>
 
-                    <Border Grid.Row="2" Background="White" CornerRadius="8" Padding="20">
+                    <Border Grid.Row="3" Background="White" CornerRadius="8" Padding="20">
                         <Border.Effect>
                             <DropShadowEffect BlurRadius="10" ShadowDepth="2" Opacity="0.1"/>
                         </Border.Effect>
