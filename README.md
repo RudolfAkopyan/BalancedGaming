@@ -16,7 +16,6 @@
   <img src="https://img.shields.io/badge/installer-WiX%20v7-8A2BE2" alt="WiX v7" />
 </p>
 
-![Dashboard](docs/dashboard.png)
 
 ## About
 
