@@ -56,7 +56,7 @@ namespace Balanced_Gaming.ViewModels
 
         public bool DialogResult {  get; private set; }
 
-        public event EventHandler? CloseRequested;
+        public event EventHandler CloseRequested;
 
         [RelayCommand]
         private void Submit()

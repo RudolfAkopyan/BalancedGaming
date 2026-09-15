@@ -6,9 +6,10 @@
         Height="600" 
         Width="900"
         WindowStartupLocation="CenterScreen"
+        Icon="/Resources/BalancedGaming.ico"
         Background="#0D1117"
         Loaded="Window_Loaded">
-
+            
         <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>

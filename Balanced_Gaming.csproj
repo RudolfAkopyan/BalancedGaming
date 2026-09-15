@@ -3,14 +3,18 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
+	<ApplicationIcon>Resources\BalancedGaming.ico</ApplicationIcon>
+    <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+	<ItemGroup>
+		<Resource Include="Resources\BalancedGaming.ico" />
+    </ItemGroup>
+	
   <ItemGroup>
     <Folder Include="Helpers\" />
-    <Folder Include="Resources\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

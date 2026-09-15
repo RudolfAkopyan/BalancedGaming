@@ -23,7 +23,7 @@ namespace Balanced_Gaming.Data
             string dbPath = System.IO.Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                 "BalancedGaming",
-                "balancedfaming.db"
+                "balancedGaming.db"
                 );
         
             string folder = System.IO.Path.GetDirectoryName(dbPath);

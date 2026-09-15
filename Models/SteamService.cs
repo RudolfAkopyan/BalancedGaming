@@ -97,7 +97,7 @@ namespace Balanced_Gaming.Models
                 response.EnsureSuccessStatusCode();
                 return await response.Content.ReadAsStringAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }

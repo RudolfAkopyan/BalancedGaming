@@ -18,14 +18,14 @@ namespace Balanced_Gaming.Models
         public int energyLevel { get; set; }        // 1-5
 
         // Pre-game specific
-        public string? motivation { get; set; }     // Dropdown value
+        public string motivation { get; set; }     // Dropdown value
         public int? focusLevel { get; set; }        // 1-5
 
         // Post-game specific
         public int? satisfaction { get; set; }      // 1-5
         public int? wellbeingImpact { get; set; }   // 1-5
 
-        public string? notes { get; set; }
+        public string notes { get; set; }
 
         // Navigation properties
         public User user { get; set; }

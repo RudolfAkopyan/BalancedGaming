@@ -84,18 +84,12 @@ namespace Balanced_Gaming.Views
                         var defaultGames = new List<string> { "Dota 2", "Counter-Strike 2", "Minecraft", "Valorant", "Fortnite" };
                         foreach (var gameName in defaultGames)
                         {
-                            if (!db.games.Any(g => g.gameName == gameName))
                             {
-                                new Game { gameName = gameName, addedAt = DateTime.Now, processName = "", genre = "" };
-                                db.SaveChanges();
-
-                                MessageBox.Show(
-                                    "Welcome! Database created successfully",
-                                    "BalancedGaming",
-                                    MessageBoxButton.OK,
-                                    MessageBoxImage.Information
-                                );
+                                if (!db.games.Any(g => g.gameName == gameName))
+                                    db.games.Add(new Game { gameName = gameName, addedAt = DateTime.Now, processName = "", genre = "" });
                             }
+                            db.SaveChanges();
+                            MessageBox.Show("Welcome! Database created successfully", "BalancedGaming", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                     }
 
@@ -120,7 +114,9 @@ namespace Balanced_Gaming.Views
             // Create system tray icon
             notifyIcon = new NotifyIcon();
             notifyIcon.Text = "BalancedGaming";
-            notifyIcon.Icon = SystemIcons.Application;
+            var iconStream = System.Windows.Application.GetResourceStream(
+            new Uri("pack://application:,,,/Resources/BalancedGaming.ico")).Stream;
+            notifyIcon.Icon = new Icon(iconStream, SystemInformation.SmallIconSize);
             notifyIcon.Visible = true;
             notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
 
@@ -534,17 +530,15 @@ namespace Balanced_Gaming.Views
                         }
 
                         string moodBeforeStr = "N/A";
-                        if (beforeMood != null && beforeMood.moodScore != null)
+                        if (beforeMood != null)
                         {
-                            int scoreValue = beforeMood.moodScore;
-                            moodBeforeStr = scoreValue.ToString();
+                            moodBeforeStr = beforeMood.moodScore.ToString();
                         }
 
                         string moodAfterStr = "N/A";
-                        if (afterMood != null && afterMood.moodScore != null)
+                        if (afterMood != null)
                         {
-                            int scoreValue = afterMood.moodScore;
-                            moodAfterStr = scoreValue.ToString();
+                            moodAfterStr = afterMood.moodScore.ToString();
                         }
 
                         string satisfactionStr = "N/A";
@@ -587,7 +581,7 @@ namespace Balanced_Gaming.Views
             }
             catch (Exception ex)
             {
-             
+                MessageBox.Show("Error loading sessions: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
    
@@ -612,6 +606,7 @@ namespace Balanced_Gaming.Views
             }
             catch (Exception ex)
             {
+                MessageBox.Show("Failed to load Steam games: " + ex.Message, "Steam", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {
