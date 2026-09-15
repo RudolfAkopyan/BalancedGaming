@@ -170,11 +170,11 @@ namespace Balanced_Gaming.Views
                             userId = currentUserId,
                             assessmentTime = DateTime.Now,
                             type = AssessmentType.BeforeGaming,
-                            moodScore = moodWindow.MoodValue,
-                            stressLevel = moodWindow.StressValue,
-                            energyLevel = moodWindow.EnergyValue,
-                            motivation = moodWindow.MotivationValue,
-                            focusLevel = moodWindow.FocusValue
+                            moodScore = moodWindow.ViewModel.MoodValue,
+                            stressLevel = moodWindow.ViewModel.StressValue,
+                            energyLevel = moodWindow.ViewModel.EnergyValue,
+                            satisfaction = moodWindow.ViewModel.SatisfactionValue,
+                            wellbeingImpact = moodWindow.ViewModel.ImpactValue
                         };
                         db.moodAssessments.Add(moodAssessment);
                         db.SaveChanges();
@@ -278,11 +278,11 @@ namespace Balanced_Gaming.Views
                                 userId = currentUserId,
                                 assessmentTime = DateTime.Now,
                                 type = AssessmentType.AfterGaming,
-                                moodScore = moodWindow.MoodValue,
-                                stressLevel = moodWindow.StressValue,
-                                energyLevel = moodWindow.EnergyValue,
-                                satisfaction = moodWindow.SatisfactionValue,
-                                wellbeingImpact = moodWindow.ImpactValue
+                                moodScore = moodWindow.ViewModel.MoodValue,
+                                stressLevel = moodWindow.ViewModel.StressValue,
+                                energyLevel = moodWindow.ViewModel.EnergyValue,
+                                satisfaction = moodWindow.ViewModel.SatisfactionValue,
+                                wellbeingImpact = moodWindow.ViewModel.ImpactValue
                             };
                             db.moodAssessments.Add(moodAssessment);
                             db.SaveChanges();
