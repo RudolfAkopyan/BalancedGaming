@@ -46,11 +46,11 @@ BalancedGaming helps adult gamers track their gaming sessions and monitor how ga
 
 ## Installation
 
-1. Download the latest `BalancedGaming.msi` from the [Releases](https://github.com/RudolfAkopyan/BalancedGaming/releases) page.
+1. Download the latest `.msi` installer from the [Releases](https://github.com/RudolfAkopyan/BalancedGaming/releases) page.
 2. Run the installer. The app is installed to `Program Files\BalancedGaming` and added to the Start menu.
 3. To uninstall, use **Settings → Apps**.
 
-The installer is self-contained, so no separate .NET runtime is required. User data (database and settings) is stored in `%LocalAppData%\BalancedGaming` and is kept when the app is updated or uninstalled.
+> **Note:** The installer is not code-signed, so Windows SmartScreen may show a warning. Click **More info → Run anyway** to continue.
 
 ## Building from Source
 
